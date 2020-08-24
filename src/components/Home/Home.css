@@ -1,0 +1,65 @@
+body{
+    margin: 0px;
+    padding: 0px;
+}
+.home-container{
+    align-self: center;
+    width: 100vw;
+    position: relative;
+}
+.home-body-container{
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0px 7vw;
+    background-color: pink;
+}
+.tool-box-container{
+}
+.search-box-container{
+    width: 30vw;
+    height: 100px;
+    background-color: red; 
+}
+.filter-container{
+    width: 200px;
+    height: 100px;
+    background-color: blue; 
+}
+
+.home-container ul{
+    margin: 0px;
+    padding-left: 0px;
+    background-color: purple;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    justify-items: center;
+}
+
+li {
+    width: 90%; 
+    max-width: 270px;
+    height: 290px;
+    margin-bottom: 30px;
+    background-color: gold;
+    border: 5px solid red;
+
+}
+
+@media only screen and (max-width: 1200px){
+    .home-container ul{
+        grid-template-columns: repeat(3,1fr);
+    }
+}
+@media only screen and (max-width: 800px){
+    .home-container ul{
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+@media only screen and (max-width: 500px){
+    .home-container ul{
+        grid-template-columns: repeat(1,1fr);
+    }
+}
+
+ 
