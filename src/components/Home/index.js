@@ -1,13 +1,14 @@
 import React, {useState, useEffect} from 'react'
-import axios from 'axios';
 import './Home.css'
 import Navbar from '../Navbar'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
 
 const Home = (props) => {
-
     const [filterState,setFilterState] = useState('none');
+    const [searchTerm, setSearchTerm] = useState("");
+    const [filteredCountries, setSearchResults] = useState([...props.countries]);
+
     const toggleFilter = () => {
         if (filterState === 'none'){
             setFilterState('flex');
@@ -16,30 +17,34 @@ const Home = (props) => {
         }
     }
 
-    const [data, setData] = useState([]);
-    const array = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19];
-    useEffect(() => {
-        (async function() {
-            try {
-                const response = await axios('https://restcountries.eu/rest/v2/all');
-                console.log(response.data)
-                setData(response.data);
-            } catch (e) {
-                console.error(e);
-            }
-        })();
-    }, []);
-
     const handleChildClick = (e) => {
         e.stopPropagation();
-        console.log(e);
-        console.log('handleChildClick');
     }
 
-    const onClickRegion = (e) => {
+    const onClickRegion = (region) => {
         toggleFilter();
-        console.log(e);
+        const countriesFound = props.countries.filter(country => country.region === region && country.name.toLowerCase().includes(searchTerm.toLowerCase()));
+        setSearchResults(countriesFound);
     }
+
+    const handleChange = event => {
+        setSearchTerm(event.target.value)
+    }
+
+    useEffect(() => {
+        setSearchResults(props.countries);
+    }, [props.countries])
+
+    useEffect(() => {
+        if (searchTerm.length) {
+            const countriesFound = props.countries.filter(country => country.name.toLowerCase().includes(searchTerm.toLowerCase()));
+            setSearchResults(countriesFound);
+        } else {
+            setSearchResults(props.countries);
+        }
+
+    }, [searchTerm]);
+    
 
     return (
         <div className="home-container">
@@ -48,7 +53,12 @@ const Home = (props) => {
                 <div className="tool-box-container">
                     <div className="search-box-container">
                         <FontAwesomeIcon className='search-icon icon-color' icon={faSearch}  />
-                        <input className="search-input-container" placeholder="..." />
+                        <input 
+                            className="search-input-container" 
+                            placeholder="..." 
+                            value={searchTerm}
+                            onChange={handleChange}
+                        />
                     </div>
                     <div onClick={toggleFilter} className="filter-container">
                         <p>Filter by Region</p>
@@ -60,15 +70,16 @@ const Home = (props) => {
                         }
                             <div onClick={handleChildClick} style={{display: filterState }}  class="dropdown-content">
                                 <i onClick={ () => onClickRegion('Africa')}>Africa</i>
-                                <i onClick={ () => onClickRegion('America')}>America</i>
+                                <i onClick={ () => onClickRegion('Americas')}>Americas</i>
                                 <i onClick={ () => onClickRegion('Asia')}>Asia</i>
+                                <i onClick={ () => onClickRegion('Europe')}>Europe</i>
                                 <i onClick={ () => onClickRegion('Oceania')}>Oceania</i>
                             </div>
                     </div>
                 </div>
                 <ul>
                     {
-                        data.map(element => {
+                        filteredCountries.map(element => {
                             return (
                                 <li key={element}>
                                     <div className="country-flag-container">
