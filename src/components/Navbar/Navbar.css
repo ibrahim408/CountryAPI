@@ -7,7 +7,50 @@
     z-index: 999;
     box-sizing: border-box;
     padding: 0px 7vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--elements-color);
 }
-.darkModeIcon{
-    color: black;
+.right-navbar-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.dark-mode-button{
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+    border-radius: 3px;
+}
+.dark-mode-icon{
+    margin-right: 10px;
+}
+.dark-mode-text{
+    margin: 0px;
+}
+.dark-mode-button:hover{
+    background-color: var(--background-color);  
+}
+
+
+.icon-color{
+    color: var(--text-color);
+}
+
+h2{
+    color: var(--text-color);
+}
+
+@media only screen and (max-width: 420px){
+    h2{
+        font-size: 18px;
+    }
+}
+
+@media only screen and (max-width: 320px){
+    h2{
+        font-size: 14px;
+    }
 }
