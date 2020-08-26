@@ -9,7 +9,6 @@ import LocaleContext from './LocaleContext';
 function App() {
 
 const [countries, setCountries] = useState([]);
-const [countriesByTerm, setCountriesByTerm] = useState([]);
 let theme = 'light-theme';
 
 const toggleTheme = () => {
@@ -67,9 +66,3 @@ useEffect(() => {
 }
 
 export default App;
-{/* <div id='app' className="dark-theme">
-<Home onToggleTheme={toggleTheme} theme={theme} countries={countries}  />
-</div> */}
-
-
-// onToggleTheme={toggleTheme} 

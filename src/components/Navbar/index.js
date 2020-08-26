@@ -3,8 +3,6 @@ import './Navbar.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMoon } from '@fortawesome/free-solid-svg-icons'
 
-
-
 const Navbar = (props) => {    
     return (
         <div className="navbar-container">

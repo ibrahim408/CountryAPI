@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Nunito+Sans);
+
  .light-theme {
      --background-color:  hsl(0, 0%, 98%);
      --elements-color:  hsl(0, 0%, 100%);
@@ -10,5 +12,67 @@
     --text-color: hsl(0, 0%, 100%);
     --input-color:  hsl(0, 0%, 98%)
  }
+
+ body{
+    margin: 0px;
+    padding: 0px;
+}
+
+body a:link {
+    text-decoration: none;
+}
+
+:focus {
+   outline-color: transparent;
+   outline-style: none;
+}
+
+
+h2{
+    font-family: 'Nunito Sans', serif;
+    color: var(--text-color);
+}
+
+h3{
+    font-family: 'Nunito Sans', serif;
+    color: var(--text-color);
+}
+
+h3{
+    font-family: 'Nunito Sans', serif;
+    text-decoration: none;
+}
+
+h4{
+    font-family: 'Nunito Sans', serif;
+    color: var(--text-color);
+}
+
+p{
+    font-family: 'Nunito Sans', serif;
+    color: var(--text-color);
+}
+input{
+    color: var(--text-color);
+}
+
+span {
+    color: var(--text-color);
+    display: inline-block; 
+    margin: 3px 0;        
+}
+
+@media only screen and (max-width: 420px){
+    h2{
+        font-size: 18px;
+    }
+}
+
+@media only screen and (max-width: 320px){
+    h2{
+        font-size: 14px;
+    }
+}
+
 
 
