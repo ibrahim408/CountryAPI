@@ -3,6 +3,7 @@ import './Home.css'
 import Navbar from '../Navbar'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
+import { Link } from 'react-router-dom';
 
 const Home = (props) => {
     const [filterState,setFilterState] = useState('none');
@@ -48,7 +49,7 @@ const Home = (props) => {
 
     return (
         <div className="home-container">
-            <Navbar onToggleTheme={props.onToggleTheme} theme={props.theme} />
+            <Navbar onToggleTheme={props.onToggleTheme} />
             <div className='home-body-container'>
                 <div className="tool-box-container">
                     <div className="search-box-container">
@@ -81,17 +82,19 @@ const Home = (props) => {
                     {
                         filteredCountries.map(element => {
                             return (
-                                <li key={element}>
-                                    <div className="country-flag-container">
-                                        <img className="country-flag-img-style" src={element.flag}/>
-                                    </div>
-                                    <div className="country-detail-container">
-                                        <h3>{element.name}</h3>
-                                        <span style={{}}>Population:</span> <span style={{}}>{element.population}</span><br></br>
-                                        <span style={{}}>Region:</span> <span style={{}}>{element.region}</span><br></br>
-                                        <span style={{}}>Capital:</span> <span style={{}}>{element.capital}</span><br></br>
-                                    </div>
-                                </li>
+                                <Link to={element.alpha3Code}>
+                                    <li key={element}>
+                                        <div className="country-flag-container">
+                                            <img className="country-flag-img-style" src={element.flag}/>
+                                        </div>
+                                        <div className="country-detail-container">
+                                            <h3>{element.name}</h3>
+                                            <span style={{}}>Population:</span> <span style={{}}>{element.population}</span><br></br>
+                                            <span style={{}}>Region:</span> <span style={{}}>{element.region}</span><br></br>
+                                            <span style={{}}>Capital:</span> <span style={{}}>{element.capital}</span><br></br>
+                                        </div>
+                                    </li>
+                                </Link>
                             )
                         })
                     }

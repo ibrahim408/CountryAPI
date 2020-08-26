@@ -125,6 +125,11 @@ li {
     border-radius: 5px;
     display: flex;
     flex-direction: column;
+    transition: transform .5s;
+}
+
+li:hover{
+    transform: scale(1.1);
 }
 .country-flag-container{
     flex: 8;
@@ -174,6 +179,9 @@ span {
 }
 
 h3{
+    color: var(--text-color);
+}
+h4{
     color: var(--text-color);
 }
 

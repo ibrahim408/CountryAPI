@@ -1,9 +1,13 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios';
 import Home from './components/Home'
+import Detail from './components/Detail'
 import './App.css'
+import { Switch, Route, BrowserRouter} from 'react-router-dom'
+import LocaleContext from './LocaleContext';
 
 function App() {
+
 const [countries, setCountries] = useState([]);
 const [countriesByTerm, setCountriesByTerm] = useState([]);
 let theme = 'light-theme';
@@ -37,10 +41,35 @@ useEffect(() => {
 
 
   return (
-    <div id='app' className="dark-theme">
-    <Home onToggleTheme={toggleTheme} theme={theme} countries={countries}  />
-   </div>
+    <LocaleContext.Provider value={countries}>
+      <div id='app' className="dark-theme">
+        <BrowserRouter>
+          <Switch>
+            <Route
+              exact
+              path='/'
+              render={(props) => (
+                <Home {...props} onToggleTheme={toggleTheme} countries={countries} />
+              )}
+            />
+            <Route
+              exact
+              path="/:countryID"
+              render={(props) => (
+                <Detail {...props} onToggleTheme={toggleTheme} />
+              )}
+            />
+          </Switch>
+        </BrowserRouter>
+      </div>
+    </LocaleContext.Provider>
   );
 }
 
 export default App;
+{/* <div id='app' className="dark-theme">
+<Home onToggleTheme={toggleTheme} theme={theme} countries={countries}  />
+</div> */}
+
+
+// onToggleTheme={toggleTheme} 
