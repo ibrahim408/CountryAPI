@@ -66,3 +66,5 @@ useEffect(() => {
 }
 
 export default App;
+
+// abdi a bitch
